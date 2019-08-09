@@ -1,0 +1,147 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int POW(int a, int n);
+float SQR(float a);
+void BIN(int a);
+void OKT(int a);
+void HEX(int a);
+
+
+int main()
+{
+    char znak;
+    int a, b;
+    float c;
+    printf("MENU\n\n");
+    printf("1. Potegowanie\n");
+    printf("2. Pierwiastkowanie\n");
+    printf("3. Zapis liczby dziesietnej w postaci dwojkowej\n");
+    printf("4. Zapis liczby dziesietnej w postaci osemkowej\n");
+    printf("5. Zapis liczby dziesietnej w systemie szestnastkowym\n");
+    printf("0. Koniec Programu\n");
+
+    znak = getchar();
+
+    while(znak!='0')
+    {
+        switch(znak)
+        {
+        case '1':
+
+            printf("Podaj liczbe: ");
+            scanf("%d",&a);
+            printf("Podaj potege liczby: ");
+            scanf("%d",&b);
+            printf("Liczba %d podniesiona do potegi %d to: %d",a,b,POW(a,b));
+            printf("\n\nWybierz opcje: ");
+            break;
+        case '2':
+
+            printf("Podaj liczbe: ");
+            scanf("%f",&c);
+            printf("Pierwiastek z %0.2f = %0.2f", c, SQR(c));
+            printf("\n\nWybierz opcje: ");
+            break;
+        case '3':
+
+            printf("Podaj liczbe: ");
+            scanf("%d",&a);
+            printf("Liczba dziesietna %d zapisana w systemie binarnym: ",a);
+            BIN(a);
+            printf("\n\n Wybierz opcje: ");
+            break;
+        case '4':
+
+            printf("Podaj liczbe: ");
+            scanf("%d",&a);
+            printf("Liczba dziesietna %d zapisana w systemie oktalnym: ",a);
+            OKT(a);
+            printf("\n\nWybierz opcje: ");
+            break;
+        case '5':
+
+            printf("Podaj liczbe: ");
+            scanf("%d", &a);
+            printf("Liczba dziesietna %d zapisana w systemie hexadecymalnym: ");
+            HEX(a);
+            printf("\n\nWybierz opcje: ");
+            break;
+
+        }
+        znak=getchar();
+    }
+    printf("Koniec programu. Wcisnij dowolny przycisk...\n");
+    return 0;
+}
+
+int POW(int a, int n)
+{
+    return pow(a,n);
+}
+
+float SQR(float a)
+{
+    return sqrt(a);
+}
+
+void BIN(int a)
+{
+    int i=0,tab[31];
+
+    while(a) //dopóki liczba będzie różna od zera
+    {
+        tab[i++]=a%2;
+        a/=2;
+    }
+
+    for(int j=i-1; j>=0; j--)
+        printf("%d",tab[j]);
+}
+
+void OKT(int a)
+{
+    int i=0,tab[31];
+
+    while(a) //dopóki liczba będzie różna od zera
+    {
+        tab[i++]=a%8;
+        a/=8;
+    }
+
+    for(int j=i-1; j>=0; j--)
+        printf("%d",tab[j]);
+}
+
+void HEX(int a)
+{
+    int tab[31];
+    int i=0;
+
+    while(a)
+    {
+        tab[i++]=a%16;
+        a/=16;
+    }
+
+    for(int j=i-1; j>=0; j--)
+    {
+        if(tab[j]==10)
+            printf("A");
+        if(tab[j]==11)
+            printf("B");
+        if(tab[j]==12)
+            printf("C");
+        if(tab[j]==13)
+            printf("D");
+        if(tab[j]==14)
+            printf("E");
+        if(tab[j]==15)
+            printf("F");
+        if(tab[j]<10)
+            printf("%d",tab[j]);
+    }
+}
+
+
